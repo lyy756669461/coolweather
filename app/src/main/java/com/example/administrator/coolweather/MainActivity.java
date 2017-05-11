@@ -23,20 +23,27 @@ public class MainActivity extends AppCompatActivity {
        private String[] city01 = {"北京"};
        private String[] city17 ={"杭州", "温州", "绍兴", "湖州", "衢州", "金华", "台州", "嘉兴", "舟山", "宁波", "丽水"};
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn1= (Button) findViewById(R.id.button);
-        btn1.setVisibility(View.VISIBLE);
+        final Button btn1= (Button) findViewById(R.id.button);
+         btn1.setVisibility(View.GONE);
         final ListView listView= (ListView) findViewById(R.id.list_view);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,provinces);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
          @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+             btn1.setVisibility(View.VISIBLE);
+             btn1.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,provinces);
+                     listView.setAdapter(adapter);
+                     btn1.setVisibility(View.GONE);
+                 }
+             });
              Toast.makeText(MainActivity.this,provinces[position], Toast.LENGTH_SHORT).show();
              String[] data=null;
              if("北京".equals(provinces[position])) {
