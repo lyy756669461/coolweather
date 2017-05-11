@@ -30,19 +30,8 @@ public class cityActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listview1);
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data));
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(cityActivity.this, city17[position], Toast.LENGTH_SHORT).show();
-//                Intent intent=new Intent(cityActivity.this,CountyActivity.class);
-//                intent.putExtra("p",city17);
-//                startActivity(intent);
-
 
             }
-
-
-
     }
 
 

@@ -6,34 +6,50 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+
 public class MainActivity extends AppCompatActivity {
 
-       private String[] data={"北京","浙江省","江西省","四川省","江苏省","重庆市","河北省","山西省","辽宁省","吉林省","黑龙江省"};
+
+       private String[] provinces={"北京", "浙江省", "江西省", "四川省", "江苏省", "重庆市", "河北省", "山西省", "辽宁省", "吉林省", "黑龙江省"};
+       private String[] city01 = {"北京"};
+       private String[] city17 ={"杭州", "温州", "绍兴", "湖州", "衢州", "金华", "台州", "嘉兴", "舟山", "宁波", "丽水"};
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView= (ListView) findViewById(R.id.list_view);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,data);
+        Button btn1= (Button) findViewById(R.id.button);
+        btn1.setVisibility(View.VISIBLE);
+        final ListView listView= (ListView) findViewById(R.id.list_view);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,provinces);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
          @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             Toast.makeText(MainActivity.this, data[position], Toast.LENGTH_SHORT).show();
-             Intent intent=new Intent(MainActivity.this,cityActivity.class);
-             intent.putExtra("p",data[position]);
-             startActivity(intent);
+             Toast.makeText(MainActivity.this,provinces[position], Toast.LENGTH_SHORT).show();
+             String[] data=null;
+             if("北京".equals(provinces[position])) {
+                 data = city01;
+             }
+              else
+             {
+                 data=city17;
+             }
 
-
-
+             ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,data);
+             listView.setAdapter(adapter);
          }
      });
-
-
     }
 }
