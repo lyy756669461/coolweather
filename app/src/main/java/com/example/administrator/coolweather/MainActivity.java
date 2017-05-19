@@ -89,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
                     selectedcityIndex=position;
                     showCounties(selectedcityIndex);
                 } else {
-
+                     //选定区县,去显示天气界面
+                    selectedcityIndex=position;
+                    Intent intent=new Intent(MainActivity.this,WeatherActivity.class);
+                    startActivity(intent);
                 }
             }
         });
